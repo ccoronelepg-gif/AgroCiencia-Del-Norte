@@ -1,0 +1,16 @@
+name: Verificación del centro de integración
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar navegación, archivos, registros y puente
+        run: python tests/verificar_integracion.py
